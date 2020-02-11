@@ -2,7 +2,7 @@ const express = require('express')
 const post = require('../usecases/post')
 const router = express.Router()
 
-// /koders -> getAll()
+// /posts -> getAll()
 router.get('/', async (request, response) => {
   try {
     const posts = await post.getAll()
@@ -22,7 +22,7 @@ router.get('/', async (request, response) => {
   }
 })
 
-// /koders -> create()
+// /posts -> create()
 router.post('/', async (request, response) => {
   try {
     var {
@@ -49,7 +49,7 @@ router.post('/', async (request, response) => {
   }
 })
 
-// /koders -> getById()
+// /posts -> getById()
 router.get('/:id', async (request, response) => {
   try {
     var { id } = request.params
@@ -70,7 +70,7 @@ router.get('/:id', async (request, response) => {
   }
 })
 
-// /koders -> deleteByid()
+// /posts -> deleteByid()
 router.delete('/:id', async (request, response) => {
   try {
     var { id } = request.params
@@ -90,7 +90,7 @@ router.delete('/:id', async (request, response) => {
     })
   }
 })
-// /koders -> updateById()
+// /posts -> updateById()
 router.patch('/:id', async (request, response) => {
   try {
     var infoToUpdate = request.body

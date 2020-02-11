@@ -3,7 +3,7 @@ const Post = require('../models/post')
 
 function create ({ title, author, dateCreated, timeRead, image }) {
   const newPost = new Post({ title, author, dateCreated, timeRead, image })
-  return newPost.save() // is a promise
+  return newPost.save()
 }
 
 function deleteByid (id) {
