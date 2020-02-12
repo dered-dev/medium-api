@@ -9,6 +9,13 @@ const postSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  description: {
+    type: String,
+    minlength: 5,
+    maxlength: 128,
+    required: true,
+    trim: true
+  },
   author: {
     type: String,
     minlength: 2,
@@ -18,7 +25,7 @@ const postSchema = new mongoose.Schema({
   },
   dateCreated: {
     type: Date,
-    required: true
+    default: new Date()
   },
   timeRead: {
     type: Number,

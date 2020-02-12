@@ -1,16 +1,19 @@
 const express = require('express')
 const post = require('../usecases/post')
+const auth = require('../middlewares/auth')
 const router = express.Router()
+
+router.use(auth)
 
 // /posts -> getAll()
 router.get('/', async (request, response) => {
   try {
-    const posts = await post.getAll()
+    const allPosts = await post.getAll()
     response.json({
       success: true,
       message: 'All posts',
       data: {
-        posts
+        allPosts
       }
     })
   } catch (error) {
@@ -23,16 +26,17 @@ router.get('/', async (request, response) => {
 })
 
 // /posts -> create()
-router.post('/', async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     var {
       title,
       author,
       dateCreated,
       timeRead,
-      image
+      image,
+      description
     } = request.body
-    const newPost = await post.create({ title, author, dateCreated, timeRead, image })
+    const newPost = await post.create({ title, author, dateCreated, timeRead, image, description })
     response.json({
       success: true,
       message: 'New Post',
