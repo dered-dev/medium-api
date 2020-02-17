@@ -10,7 +10,7 @@ function auth (request, response, next) {
     response.status(401)
     response.json({
       success: false,
-      message: 'Unauthorizedss'
+      message: 'Unauthorized'
     })
   }
 }

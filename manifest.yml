@@ -1,0 +1,5 @@
+applications:
+- name: dered170-medium-api
+  random-route: true
+  memory: 128M
+  force_https: true

@@ -11,7 +11,7 @@ function deleteByid (id) {
 }
 
 function getAll () {
-  return Post.find({})
+  return Post.find()
 }
 
 function getById (id) {

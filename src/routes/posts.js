@@ -3,7 +3,7 @@ const post = require('../usecases/post')
 const auth = require('../middlewares/auth')
 const router = express.Router()
 
-router.use(auth)
+// router.use(auth)
 
 // /posts -> getAll()
 router.get('/', async (request, response) => {
@@ -17,7 +17,9 @@ router.get('/', async (request, response) => {
       }
     })
   } catch (error) {
-    response.status(400)
+    response.status(401)
+    console.log(error)
+    console.log(error.message)
     response.json({
       success: false,
       message: error.message
@@ -75,7 +77,7 @@ router.get('/:id', async (request, response) => {
 })
 
 // /posts -> deleteByid()
-router.delete('/:id', async (request, response) => {
+router.delete('/:id', auth, async (request, response) => {
   try {
     var { id } = request.params
     const postData = await post.deleteByid(id)
@@ -95,7 +97,7 @@ router.delete('/:id', async (request, response) => {
   }
 })
 // /posts -> updateById()
-router.patch('/:id', async (request, response) => {
+router.patch('/:id', auth, async (request, response) => {
   try {
     var infoToUpdate = request.body
     var { id } = request.params
